@@ -1,6 +1,6 @@
 ---
 title: "그래프 라플라시안 행렬(Laplacian Matrix) 완벽 정리"
-date: 2026-07-09 22:00:00 +0900
+date: 2026-07-11 22:00:00 +0900
 categories: [Mathematics, GraphTheory]
 tags: [laplacian-matrix, spectral-graph-theory, linear-algebra, eigenvalues, graph-theory]
 math: true
