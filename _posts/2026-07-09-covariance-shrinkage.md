@@ -109,7 +109,13 @@ $$
 
 좋은 target이 되려면 (1) 자유모수가 적어야 하고 (2) 동시에 데이터의 중요한 특징은 반영해야 합니다. Ledoit & Wolf(2003)가 제안한 target은 **등상관모형(constant correlation model)**입니다: 모든 종목 쌍의 상관계수가 동일하다고 가정하는 것입니다.
 
-구체적으로, 표본상관계수 $r_{ij} = s_{ij}/\sqrt{s_{ii}s_{jj}}$들의 평균을 $\bar r$이라 하면, target 행렬 $F$는
+구체적으로, 종목 $i,j$ 간 표본상관계수를 $r_{ij} = s_{ij}/\sqrt{s_{ii}s_{jj}}$라 할 때, 이들 모든 쌍(unique pair)에 대한 평균을 $\bar r$이라 정의합니다.
+
+$$
+\bar r = \frac{2}{(p-1)p}\sum_{i=1}^{p-1}\sum_{j=i+1}^{p} r_{ij}
+$$
+
+즉 $p$개 종목에서 나올 수 있는 서로 다른 쌍의 개수 $\binom{p}{2} = p(p-1)/2$로 모든 쌍별 상관계수의 합을 나눈, 단순 평균입니다. 이 하나의 숫자 $\bar r$이 등상관모형에서 **모든** 종목 쌍의 상관계수를 대표하게 됩니다. $\bar r$을 구하면, target 행렬 $F$는
 
 $$
 f_{ii} = s_{ii}, \qquad f_{ij} = \bar r \sqrt{s_{ii}s_{jj}} \quad (i \neq j)
