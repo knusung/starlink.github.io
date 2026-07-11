@@ -171,7 +171,7 @@ $$ \operatorname{sign}(\hat\lambda_{K+1}) = \operatorname{sign}\big(q - p'\tilde
 특정 뷰 $k$에 대해,
 
 - $\lambda_k$ 는 그 뷰의 기대수익률 $q_k$에 대해 **증가함수**다. (더 강세로 볼수록 더 많이 투자한다.)
-- $\left|\lambda_k\right|$ 는 그 뷰의 확신도(정밀도) $\omega_k^{-1}$에 대해 **증가함수**다. (더 확신할수록 그 뷰에 더 크게 베팅한다.)
+- $|\lambda_k|$ 는 그 뷰의 확신도(정밀도) $\omega_k^{-1}$에 대해 **증가함수**다. (더 확신할수록 그 뷰에 더 크게 베팅한다.)
 
 | 구분 | Property 3.1 | Property 3.2 |
 |---|---|---|
