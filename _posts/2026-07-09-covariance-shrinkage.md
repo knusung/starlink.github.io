@@ -1,12 +1,12 @@
 ---
 title: "공분산 행렬 Shrinkage 추정 정리"
-date: 2026-07-09 20:00:00 +0900
+date: 2026-07-16 20:00:00 +0900
 categories: [Statistics, Finance]
 tags: [shrinkage, covariance-matrix, random-matrix-theory, portfolio-optimization, ledoit-wolf]
 math: true
 ---
 
-포트폴리오 최적화, PCA, 판별분석 등 다변량 통계의 거의 모든 곳에서 공분산 행렬 추정이 필요합니다. 그런데 변수의 개수(차원)가 표본 크기에 비해 크지 않더라도, 표본공분산행렬은 생각보다 훨씬 부정확한 추정량입니다. 이 글에서는 이 문제를 해결하는 **shrinkage(축소) 추정** 기법을, Ledoit과 Wolf의 두 논문을 바탕으로 정리합니다.
+포트폴리오 최적화, PCA, 판별분석 등 다변량 통계의 거의 모든 곳에서 공분산 행렬 추정이 필요합니다. 그런데 변수의 개수(차원)가 표본 크기에 비해 크지 않더라도, 표본공분산행렬은 생각보다 훨씬 부정확한 추정량입니다. 그래서 이 문제를 해결하는 **shrinkage(축소) 추정** 기법을 정리해 보겠습니다.
 
 - Ledoit & Wolf, *"Honey, I Shrunk the Sample Covariance Matrix"* (2003) — **Linear shrinkage**의 원리와 실전 포트폴리오 적용
 - Ledoit & Wolf, *"Nonlinear Shrinkage Estimation of Large-Dimensional Covariance Matrices"*, Annals of Statistics (2012) — **Nonlinear shrinkage**로의 확장
@@ -39,7 +39,7 @@ $$
 S = \frac{1}{n}\sum_{t=1}^{n}(y_t-\bar{y})(y_t-\bar{y})'
 $$
 
-입니다. $S$는 불편추정량(unbiased estimator)이라는 좋은 성질을 갖고 있습니다. 문제는 **차원 $p$가 표본 크기 $n$에 비해 작지 않을 때** 발생합니다. 금융에서는 이런 상황이 오히려 일반적입니다 — 수백 개 종목의 리스크를 추정하려는데, 안정적인 시계열은 몇 년 치(수십~수백 개월)밖에 없는 경우가 흔하니까요.
+입니다. $S$는 불편추정량(unbiased estimator)이라는 좋은 성질을 갖고 있습니다. 문제는 **차원 $p$가 표본 크기 $n$에 비해 작지 않을 때** 발생합니다. 금융시장에서는 이런 상황이 자주 발생합니다. — 수백 개 종목의 리스크를 추정하려는데, 안정적인 시계열은 몇 년 치(수십~수백 개월)밖에 없는 경우가 흔하기 때문입니다. —
 
 ## 2. 포트폴리오 최적화 문제의 기본 설정
 
@@ -52,6 +52,8 @@ Shrinkage가 왜 필요한지 제대로 이해하려면, 공분산 행렬 $\Sigm
 - $w_P = w_B + x$: 실제 포트폴리오 비중
 - $\mu = \mathbb{E}[y]$: 종목 기대수익률 벡터, $\Sigma$: 종목 수익률의 공분산 행렬
 - $\alpha = \mu - (w_B'\mu)\mathbf{1}$: 벤치마크 대비 **기대 초과수익률** 벡터
+
+- **액티브 비중**이란? 펀드 매니저가 본인의 투자 철학대로 시장 평균과 비교했을 때 얼마나 다르게 투자했는가를 나타내는 값으로 수식으로 표현하면 $x$ = $w_P$ - $w_B$ ($x$가 액티브 비중) 이렇게 표현할 수 있습니다.
 
 매니저의 목표는 벤치마크보다 높은 기대수익을 내면서도(=$x'\alpha$가 큼), 그 과정에서 생기는 위험은 최소화하는 것입니다. 여기서 위험은 벤치마크와의 수익률 차이, 즉 **추적오차(tracking error)**로 측정합니다.
 
