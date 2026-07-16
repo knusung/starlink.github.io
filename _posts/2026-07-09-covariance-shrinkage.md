@@ -117,7 +117,7 @@ $$
 
 $$\bar{r} = \frac{\text{전체 합}}{\text{개수}} = \frac{\sum\sum r_{ij}}{{}_{p}\mathrm{C}_{2}}$$
 
-여기에 ${}_{p}\mathrm{C}_{2} = \frac{p(p-1)}{2}$를 대입하면 분모의 분수가 뒤집히면서 곱해지게 됩니다.
+여기에 $\mathrm{C}_{2} = \frac{p(p-1)}{2}$를 대입하면 분모의 분수가 뒤집히면서 곱해지게 됩니다.
 
 $$
 \bar r = \frac{2}{(p-1)p}\sum_{i=1}^{p-1}\sum_{j=i+1}^{p} r_{ij}
