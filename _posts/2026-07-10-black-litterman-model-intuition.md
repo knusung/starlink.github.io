@@ -1,5 +1,5 @@
 ---
-title: "Black-Litterman 모델의 직관: 균형에서 시작해 뷰(View)로 기울이기"
+title: "Black-Litterman 모델에 관하여"
 date: 2026-07-10 09:00:00 +0900
 categories: [Quant Finance]
 tags: [Black-Litterman, Bayesian Statistics, Portfolio Optimization, Asset Allocation, CAPM]
@@ -8,9 +8,8 @@ math: true
 
 > *원문: He, Guangliang and Litterman, Robert (1999). "The Intuition Behind Black-Litterman Model Portfolios." Goldman Sachs Asset Management. SSRN: [https://ssrn.com/abstract=334304](https://ssrn.com/abstract=334304)*
 
-Black-Litterman 모델은 1990년 Goldman Sachs의 Fischer Black과 Robert Litterman이 발표한 이후 자산배분 실무에서 가장 널리 쓰이는 모델 중 하나가 되었다. 하지만 원 논문들은 결과가 "왜" 그렇게 나오는지에 대한 직관을 충분히 설명하지 않았고, 많은 실무자들이 이 모델을 일종의 블랙박스로 취급해왔다. 이 글에서 정리하는 He and Litterman(1999)의 논문은 정확히 그 틈을 메운다. 이들은 제약이 없는 투자자의 최적 포트폴리오가 아주 단순한 형태 — **스케일된 시장균형 포트폴리오 + 뷰 포트폴리오들의 가중합** — 로 정확히 분해된다는 것을 보인다.
+Black-Litterman 모델은 1990년 Goldman Sachs의 Fischer Black과 Robert Litterman이 발표한 이후 자산배분 실무에서 가장 널리 쓰이는 모델 중 하나가 되었다. 하지만 원 논문들은 결과가 "왜" 그렇게 나오는지에 대한 직관을 충분히 설명하지 않았고, He and Litterman(1999)의 논문이 그 이유를 설명해준다.. 이들은 제약이 없는 투자자의 최적 포트폴리오가 아주 단순한 형태 — **스케일된 시장균형 포트폴리오 + 뷰 포트폴리오들의 가중합** — 로 정확히 분해된다는 것을 보인다.
 
-이 글은 통계/ML을 공부하는 대학원생 수준의 독자를 대상으로, Black-Litterman 모델을 베이지안 통계의 언어로 풀어 설명한다. 수식 전개가 필요한 부분은 결과와 직관 위주로 본문에서 다루고, 세부적인 유도·증명 과정은 모두 부록으로 분리했다.
 
 **핵심 요약**
 - 무제약 최적 포트폴리오는 $w^{*} = \dfrac{1}{1+\tau}\left(w_{eq} + P'\Lambda\right)$ 로, **"스케일된 시장균형 포트폴리오" + "투자자 뷰 포트폴리오들의 가중합"** 으로 정확히 분해된다.
@@ -44,7 +43,7 @@ Black-Litterman 모델은 이 문제를 베이지안 방식으로 해결한다. 
 | 불확실성 처리 | 기대수익률을 확정값(포인트 추정치)으로 취급 | 기대수익률 자체를 확률변수로 취급(베이지안) |
 | 뷰가 하나도 없을 때 | 정의되지 않음(애초에 입력이 없으므로) | 정확히 (스케일된) 시장균형 포트폴리오로 수렴 |
 
-예를 들어 "독일 주식이 나머지 유럽 시장보다 좋을 것 같다"는 견해를 표준 옵티마이저에 반영하려면, 독일의 기대수익률만 올리고 나머지는 그대로 두는 식으로 접근하기 쉽다. 그런데 뒤에서(5장) 직접 확인하겠지만, 그 결과로 나오는 포트폴리오는 독일 비중이 튀는 것은 물론, 아무 견해도 표명하지 않은 호주·캐나다·일본·미국의 비중까지 크게 흔들어 놓는다. 왜 그런 일이 벌어지는지 표준 옵티마이저의 산출물만 봐서는 파악하기 어렵다. Black-Litterman은 바로 이 "왜"에 대한 답을 준다.
+예를 들어 "독일 주식이 나머지 유럽 시장보다 좋을 것 같다"는 견해를 표준 옵티마이저에 반영하려면, 독일의 기대수익률만 올리고 나머지는 그대로 두는 식으로 접근하기 쉽다. 그런데 그 결과로 나오는 포트폴리오는 독일 비중이 튀는 것은 물론, 아무 견해도 표명하지 않은 호주·캐나다·일본·미국의 비중까지 크게 흔들어 놓는다. 왜 그런 일이 벌어지는지 표준 옵티마이저의 산출물만 봐서는 파악하기 어렵다. Black-Litterman은 이것을 해결해준다.
 
 ## 2. 모델 설정: 베이지안 프레임워크
 
@@ -347,7 +346,15 @@ $$ \Lambda = A^{-1}\left[\frac{Q}{\delta} - \frac{P\Sigma}{1+\tau}w_{eq}\right] 
 
 두 형태가 같다는 것은 $A^{-1}A=I$, 즉 $A^{-1}\big[\Omega/\tau + P\Sigma P'/(1+\tau)\big]=I$ 를 이용해 $A^{-1}\Omega/\tau = I - A^{-1}P\Sigma P'/(1+\tau)$ 로 바꿔 대입하면 확인할 수 있다.
 
-또한 위험회피계수가 $\hat\delta$인 다른 투자자는 $\hat w^{*}=(\delta/\hat\delta)w^{*}$로, 목표 변동성이 $\sigma$인 투자자는 $\tilde w^{*}=\big(\sigma\delta/\sqrt{\bar\mu'\bar\Sigma^{-1}\bar\mu}\big)\,w^{*}$로 단순히 스케일링해서 얻을 수 있다. 제약이 있는 경우에는 $\bar\mu,\bar\Sigma$를 표준 포트폴리오 최적화 패키지에 입력하면 된다.
+또한 위험회피계수가 $\hat\delta$ 인 다른 투자자의 포트폴리오는 다음과 같이 단순히 스케일링해서 얻을 수 있다.
+
+$$ \hat w^{*} = \frac{\delta}{\hat\delta}\, w^{*} $$
+
+목표 변동성이 $\sigma$ 인 투자자의 포트폴리오도 마찬가지다.
+
+$$ \tilde w^{*} = \frac{\sigma\delta}{\sqrt{\bar\mu^\top \bar\Sigma^{-1} \bar\mu}}\; w^{*} $$
+
+제약이 있는 경우에는 $\bar\mu$ 와 $\bar\Sigma$ 를 표준 포트폴리오 최적화 패키지에 입력하면 된다.
 
 ### 부록 B. Property 3.1의 증명
 
