@@ -4,6 +4,7 @@ title: "[스펙트럴 그래프 이론 #4] 인접행렬의 고유값, 코시 인
 date: 2026-07-21
 categories: [math, graph-theory]
 tags: [spectral-graph-theory, adjacency-matrix, perron-frobenius, interlacing]
+math: true
 ---
 
 > Daniel Spielman의 *Spectral and Algebraic Graph Theory* 강의노트를 공부하며 제 나름대로 재구성한 글입니다.

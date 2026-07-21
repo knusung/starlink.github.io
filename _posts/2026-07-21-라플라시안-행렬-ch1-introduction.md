@@ -4,6 +4,7 @@ title: "[스펙트럴 그래프 이론 #1] 그래프를 행렬로, 행렬을 다
 date: 2026-07-21
 categories: [math, graph-theory]
 tags: [spectral-graph-theory, linear-algebra, laplacian]
+math: true
 ---
 
 > 이 시리즈는 Daniel Spielman(Yale University)의 강의노트 *Spectral and Algebraic Graph Theory*를 공부하면서 제 나름대로 정리한 글입니다. 원저작물을 그대로 옮긴 것이 아니라 제가 이해한 내용을 재구성한 것이므로, 정확한 정의·증명은 반드시 원문을 함께 참고하시길 권합니다.
