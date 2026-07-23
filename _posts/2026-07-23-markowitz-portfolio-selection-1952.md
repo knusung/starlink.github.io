@@ -6,8 +6,6 @@ tags: [Markowitz, Portfolio-Theory, MPT, Mean-Variance, Finance-Math]
 math: true
 ---
 
-> **수식 렌더링 안내**: 이 글은 `$ ... $`(인라인), `$$ ... $$`(디스플레이) 문법으로 수식을 작성했습니다. GitHub 저장소/PR 화면에서는 기본적으로 렌더링되지만, **GitHub Pages(Jekyll)로 빌드된 블로그에서는 KaTeX나 MathJax를 별도로 설정**해야 수식이 정상적으로 보입니다. 테마에 따라 `_config.yml`에 `math: true`를 켜거나 MathJax 스크립트를 `head` include에 추가해야 할 수 있습니다.
-
 ## 이 논문에 대하여
 
 - **제목**: Portfolio Selection
