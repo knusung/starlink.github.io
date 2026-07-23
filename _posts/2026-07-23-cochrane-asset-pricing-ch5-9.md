@@ -6,11 +6,9 @@ tags: [asset-pricing, mean-variance, SDF, CAPM, ICAPM, APT, Hansen-Jagannathan]
 math: true
 ---
 
-> John H. Cochrane, *Asset Pricing* (Revised Ed., Princeton University Press, 2005)의 5~9장을 공부하며 정리한 노트입니다. 본문에는 각 결과가 "왜 성립하는지"에 대한 핵심 아이디어와 전개 과정을 담았고, 형식적인 증명이 필요한 부분은 뒤쪽 **부록**으로 분리했습니다.
->
-> *Math rendering 참고: GitHub 자체 렌더링은 `$$...$$`, `$...$`를 지원하지만, Jekyll 블로그라면 MathJax/KaTeX 플러그인이 별도로 필요할 수 있습니다.*
+> John H. Cochrane, *Asset Pricing* (Revised Ed., Princeton University Press, 2005)의 5~9장을 공부하며 정리한 노트입니다.
 
-## 들어가며
+## 시작에 앞서
 
 1~4장에서는 "가격 = 기대할인 payoff", 즉
 
